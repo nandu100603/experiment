@@ -1,0 +1,51 @@
+<project name="MyJavaProject" default="compile-and-test">
+
+    <!-- Define properties -->
+    <property name="src.dir" location="src/com"/>
+    <property name="test.dir" location="test/com"/>
+    <property name="build.dir" location="build"/>
+    <property name="junit.report.dir" location="junit-reports"/>
+
+    <!-- Clean target: Remove previously compiled files -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${junit.report.dir}"/>
+    </target>
+
+    <!-- Compile target: Compile Java source files -->
+    <target name="compile" depends="clean">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"/>
+    </target>
+    
+    <target name="run" depends="compile">
+    <java classname="${main.class}" classpath="${build.dir}" fork="true"/>
+    </target>
+
+    <!-- Test target: Execute JUnit tests -->
+   <target name="test" depends="compile">
+    <mkdir dir="${junit.report.dir}"/>
+    <junit printsummary="on" fork="true">
+        <classpath>
+            <!-- Add the JUnit and Hamcrest JAR files to the classpath -->
+            <pathelement location="lib\junit-4.13.2.jar"/>
+            <pathelement location="lib\hamcrest-core-2.2.jar"/>
+            <path location="${build.dir}"/>
+            <path location="${test.dir}"/>
+        </classpath>
+        <formatter type="xml"/>
+        <batchtest todir="${junit.report.dir}">
+            <fileset dir="${test.dir}">
+                <include name="**/*Test.java"/>
+            </fileset>
+        </batchtest>
+    </junit>
+    </target>
+
+
+    <!-- Main target: Compile and test Java code -->
+    <target name="compile-and-test" depends="test">
+        <echo message="Java code compiled and tested successfully!"/>
+    </target>
+
+</project>
