@@ -1,4 +1,4 @@
 def is_palindrome(s):
-   #hello all
+   #hello 
     s = s.replace(" ", "").lower()
     return s == s[::-1]
