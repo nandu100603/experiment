@@ -2,7 +2,7 @@ import unittest
 from palindrome import is_palindrome
 
 class TestPalindrome(unittest.TestCase):
-    #test
+    
     def test_palindrome(self):
         self.assertTrue(is_palindrome("racecar"))
         self.assertFalse(is_palindrome("hello"))
