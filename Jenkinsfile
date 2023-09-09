@@ -30,11 +30,11 @@ pipeline {
                                 if (result == 0) {
                                 echo "Success: Python script executed successfully."
                                 mail bcc: '', body: '''Hi
-                                Successfully executed the code and tested ''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: '20951a1284@iare.ac.in'
+                                Successfully executed the code and tested ''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: '20951a1248@iare.ac.in'
 
                             } else {
                                  mail bcc: '', body: '''Hi
-                                failured occur executing the code ''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: '20951a1284@iare.ac.in'
+                                failured occur executing the code ''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: '20951a1248@iare.ac.in'
                                 echo "Failure: Python script execution failed with exit code $result."
                             }
 
